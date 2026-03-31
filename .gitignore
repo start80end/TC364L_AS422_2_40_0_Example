@@ -1,0 +1,26 @@
+# IDEs / Editor
+.vscode/
+.clangd/
+*.swp
+
+# Tasking Compiler / Build Outputs (빌드 시 생성되는 불필요한 파일들)
+*.o
+*.obj
+*.elf
+*.map
+*.hex
+*.mot
+*.d
+*.src
+*.lst
+
+# Build Directories (빌드 결과물 폴더가 있다면 추가)
+Debug/
+Release/
+Output/
+build/
+
+# Trace32 Logs & Temporary Files (작업 중 생기는 로그나 임시 파일)
+*.log
+*.bak
+*.tmp
