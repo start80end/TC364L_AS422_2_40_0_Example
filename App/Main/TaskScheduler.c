@@ -98,21 +98,9 @@ void TaskScheduler_ActivateTask(void) {
                 
                 #if (USE_EXAMPLE_SPI_SBC == 1)
                 /* Handle SBC connectivity and initial start-up */
-                if (Sbc_IsInitialized() == FALSE) {
-                    #if (CURRENT_SBC_MODE == SBC_MODE_PRODUCTION)
-                        /* Auto-poll in Production mode */
-                        if (Sbc_Init() == TRUE) {
-                            Sbc_ServiceWatchdog();
-                        }
-                    #else
-                        /* Manual-trigger only in Developer mode (via SPI_Command = 1) */
-                        if (SPI_Command == 1) {
-                            if (Sbc_Init() == TRUE) {
-                                SPI_Command = 0; 
-                            }
-                        }
-                    #endif
-                }
+                /* [REFACTORED] SPI_Command 경합 방지를 위해 TaskScheduler에서는 
+                   SBC 모드와 초기화 확인 프로세스만 최소화함. 
+                   초기화 제어는 Sbc_SPI_Test(while loop)에서 전담. */
                 #endif
                 break;
 

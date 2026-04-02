@@ -25,6 +25,9 @@
 #if (USE_EXAMPLE_SPI_SBC == 1)
 #include "Spi.h"
 #include "Spi_PBcfg.h"
+#include "Dma.h"
+#include "Dma_PBcfg.h"
+#include "IfxDma_reg.h"
 #include "../02_SPI_SBC/Sbc_SPI_Control.h"
 #endif
 
@@ -60,8 +63,23 @@ void core0_main(void) {
     Port_Init(&Port_Config);
 
     #if (USE_EXAMPLE_SPI_SBC == 1)
-    /* Phase 3: SPI & SBC Communication Setup */
+    /* Phase 3: SPI, DMA & SBC Communication Setup */
+    Dma_Init(&Dma_Config);
     Spi_Init(&Spi_Config);
+    
+    /* Initialize QSPI3 Priority and TOS using Standard IRQ Module */
+    extern void IrqSpi_Init(void);
+    IrqSpi_Init(); 
+
+    /* Enable Service Request Enable (SRE) for DMA Completion Interrupts */
+    /* Accessing SRC registers via MCAL standard Mcal_SetBitAtomic for safety */
+    Mcal_SetBitAtomic(&(SRC_DMACH0.U), 10, 1, 1);     /* DMA CH0: QSPI3 TX Done */
+    Mcal_SetBitAtomic(&(SRC_DMACH1.U), 10, 1, 1);     /* DMA CH1: QSPI3 RX Done */
+    
+    /* [CRITICAL FIX] Enable Hardware Request to DMA from QSPI3 */
+    Mcal_SetBitAtomic(&(SRC_QSPI3TX.U), 10, 1, 1);    /* QSPI3 -> DMA TX Trigger */
+    Mcal_SetBitAtomic(&(SRC_QSPI3RX.U), 10, 1, 1);    /* QSPI3 -> DMA RX Trigger */
+    Mcal_SetBitAtomic(&(SRC_QSPI3PT.U), 10, 1, 1);    /* QSPI3 PT Interrupt */
     #endif
 
     /* Phase 4: GTM-based Task Scheduler Setup (Replacing legacy STM) */
@@ -73,6 +91,11 @@ void core0_main(void) {
 
     /* Initialize task scheduler with 1000ms max cycle */
     TaskScheduler_Initialization(TASK_1000ms);
+
+    #if (USE_EXAMPLE_SPI_SBC == 1)
+    /* SBC initialization and VCC control sequences are handled by the Sbc_SPI_Test() state machine.
+     * (Executed in a non-blocking manner using STM timers within the main loop) */
+    #endif
 
     while (1) {
         /* Execute Periodic Tasks */

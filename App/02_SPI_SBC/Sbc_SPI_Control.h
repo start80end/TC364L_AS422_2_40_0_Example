@@ -37,9 +37,6 @@ boolean Sbc_Init(void);
 void Sbc_ServiceWatchdog(void);
 boolean Sbc_IsInitialized(void);
 
-/* Debug & Control Variables */
-extern volatile uint8 SPI_Command;
-
 /**
  * @brief Read from SBC Register (Returns 16-bit Status + Data)
  */

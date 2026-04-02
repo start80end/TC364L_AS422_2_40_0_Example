@@ -24,3 +24,9 @@ build/
 *.log
 *.bak
 *.tmp
+
+# EB Tresos Metadata (EB Tresos 설정 툴 관련 메타데이터 제외)
+Config/tresos/.metadata/
+Config/tresos/.backup/
+Config/tresos/.prefs/
+Config/tresos/TC364DP_LQFP/.prefs/

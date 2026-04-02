@@ -123,7 +123,9 @@
                   <d:ctr name="Seq_Sbc_Init" type="IDENTIFIABLE">
                     <d:var name="SpiInterruptibleSequence" type="BOOLEAN" 
                            value="false"/>
-                    <d:lst name="SpiSeqEndNotification"/>
+                    <d:lst name="SpiSeqEndNotification">
+                      <d:var type="FUNCTION-NAME" value="Sbc_SpiNotification"/>
+                    </d:lst>
                     <d:var name="SpiSequenceId" type="INTEGER" value="0"/>
                     <d:lst name="SpiJobAssignment">
                       <d:ref type="REFERENCE" 
@@ -170,7 +172,7 @@
                        value="false">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
-                <d:var name="SpiLevelDelivered" type="INTEGER" value="0">
+                <d:var name="SpiLevelDelivered" type="INTEGER" value="1">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
                 <d:lst name="SpiMainFunctionPeriod"/>
@@ -215,7 +217,17 @@
                       <d:var name="SpiSLSO0StrobeDelay" type="INTEGER" value="2">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
-                      <d:lst name="SpiHwDmaConfigurationQspi" type="MAP"/>
+                      <d:lst name="SpiHwDmaConfigurationQspi" type="MAP">
+                        <d:ctr name="SpiHwDmaConfigurationQspi_0" 
+                               type="IDENTIFIABLE">
+                          <d:ref name="SpiHwDmaChannelTransmissionRef" 
+                                 type="REFERENCE" 
+                                 value="ASPath:/Dma/Dma/DmaChannelConfig_Qspi3Tx"/>
+                          <d:ref name="SpiHwDmaChannelReceptionRef" 
+                                 type="REFERENCE" 
+                                 value="ASPath:/Dma/Dma/DmaChannelConfig_Qspi3Rx"/>
+                        </d:ctr>
+                      </d:lst>
                     </d:ctr>
                   </d:lst>
                 </d:ctr>

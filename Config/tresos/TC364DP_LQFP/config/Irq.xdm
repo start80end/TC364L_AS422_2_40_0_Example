@@ -278,7 +278,7 @@
                       <d:var name="IrqQspi2RxPrio" type="INTEGER" value="0">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
-                      <d:var name="IrqQspi3RxPrio" type="INTEGER" value="0">
+                      <d:var name="IrqQspi3RxPrio" type="INTEGER" value="1">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi4RxPrio" type="INTEGER" value="0">
@@ -298,7 +298,7 @@
                       <d:var name="IrqQspi2ErrPrio" type="INTEGER" value="0">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
-                      <d:var name="IrqQspi3ErrPrio" type="INTEGER" value="0">
+                      <d:var name="IrqQspi3ErrPrio" type="INTEGER" value="22">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi4ErrPrio" type="INTEGER" value="0">
@@ -318,7 +318,7 @@
                       <d:var name="IrqQspi2PTPrio" type="INTEGER" value="0">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
-                      <d:var name="IrqQspi3PTPrio" type="INTEGER" value="0">
+                      <d:var name="IrqQspi3PTPrio" type="INTEGER" value="23">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi4PTPrio" type="INTEGER" value="0">
@@ -372,7 +372,7 @@
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi3TxTos" type="ENUMERATION" 
-                             value="CPU0">
+                             value="DMA">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi4TxTos" type="ENUMERATION" 
@@ -398,7 +398,7 @@
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi3RxTos" type="ENUMERATION" 
-                             value="CPU0">
+                             value="DMA">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IrqQspi4RxTos" type="ENUMERATION" 
@@ -1036,10 +1036,10 @@
                     <d:var name="IrqDmaErr3SRPrio" type="INTEGER" value="0">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
-                    <d:var name="IrqDmaCh0SRPrio" type="INTEGER" value="0">
+                    <d:var name="IrqDmaCh0SRPrio" type="INTEGER" value="30">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
-                    <d:var name="IrqDmaCh1SRPrio" type="INTEGER" value="0">
+                    <d:var name="IrqDmaCh1SRPrio" type="INTEGER" value="31">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
                     <d:var name="IrqDmaCh2SRPrio" type="INTEGER" value="0">
